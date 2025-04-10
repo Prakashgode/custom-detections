@@ -1,0 +1,5 @@
+// T1059.001 - PowerShell Download Cradle
+DeviceProcessEvents
+| where FileName =~ "powershell.exe"
+| where ProcessCommandLine has "iex" and ProcessCommandLine has_any ("http", "https", "Invoke-WebRequest", "Invoke-Expression")
+| project Timestamp, DeviceName, InitiatingProcessAccountName, ProcessCommandLine
